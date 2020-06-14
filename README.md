@@ -41,5 +41,9 @@ func main() {
     // Use false to check if one of the regexp match
     result2 := regs.MatchString("foo", false)
     fmt.Println(result2)
+
+    // Check which regexp in set is matched
+    result3 := regs.MatchStringWhich("foo")
+    fmt.Println(result3)
 }
 ```

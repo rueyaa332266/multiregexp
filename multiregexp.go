@@ -1,14 +1,18 @@
+// Package multiregexp helps to make a set of regular expression. And apply functions to join the result in set logically.
 package multiregexp
 
 import (
-	"io"
 	"regexp"
 )
 
+// Regexps is a set of regular expression.
 type Regexps struct {
 	Regexp []*regexp.Regexp
 }
 
+// Match reports whether the byte slice b contains any match in the set of the regular expression res.
+// When matchEvery is true, the result of each match will be logically joined with AND.
+// Otherwise the result of each match will be joined with OR.
 func (res *Regexps) Match(b []byte, matchEvery bool) bool {
 	if matchEvery {
 		for _, re := range res.Regexp {
@@ -27,6 +31,8 @@ func (res *Regexps) Match(b []byte, matchEvery bool) bool {
 	}
 }
 
+// MatchWhich reports the index of matched regular expression in the set.
+// It returns an empty slice when no regular expression is matched.
 func (res *Regexps) MatchWhich(b []byte) []int {
 	var match []int
 	for i, re := range res.Regexp {
@@ -37,6 +43,9 @@ func (res *Regexps) MatchWhich(b []byte) []int {
 	return match
 }
 
+// MatchString reports whether the string s contains any match in the set of the regular expression res.
+// When matchEvery is true, the result of each match will be logically joined with AND.
+// Otherwise the result of each match will be joined with OR.
 func (res *Regexps) MatchString(s string, matchEvery bool) bool {
 	if matchEvery {
 		for _, re := range res.Regexp {
@@ -55,6 +64,8 @@ func (res *Regexps) MatchString(s string, matchEvery bool) bool {
 	}
 }
 
+// MatchStringWhich reports the index of matched regular expression in the set.
+// It returns an empty slice when no regular expression is matched.
 func (res *Regexps) MatchStringWhich(s string) []int {
 	var match []int
 	for i, re := range res.Regexp {
@@ -65,34 +76,7 @@ func (res *Regexps) MatchStringWhich(s string) []int {
 	return match
 }
 
-func (res *Regexps) MatchReader(r io.RuneReader, matchEvery bool) bool {
-	if matchEvery {
-		for _, re := range res.Regexp {
-			if !re.MatchReader(r) {
-				return false
-			}
-		}
-		return true
-	} else {
-		for _, re := range res.Regexp {
-			if re.MatchReader(r) {
-				return true
-			}
-		}
-		return false
-	}
-}
-
-func (res *Regexps) MatchReaderWhich(r io.RuneReader) []int {
-	var match []int
-	for i, re := range res.Regexp {
-		if re.MatchReader(r) {
-			match = append(match, i)
-		}
-	}
-	return match
-}
-
+// Append adds regular expression into the set of the regular expression res.
 func Append(res Regexps, regs ...*regexp.Regexp) Regexps {
 	for _, re := range regs {
 		res.Regexp = append(res.Regexp, re)
