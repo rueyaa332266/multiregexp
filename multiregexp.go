@@ -1,4 +1,4 @@
-// Package multiregexp helps to make a set of regular expression. And apply functions to join the result in set logically.
+// Package multiregexp helps to make a set of regular expression. And multiregexp applies functions to logical join the match result in set.
 package multiregexp
 
 import (

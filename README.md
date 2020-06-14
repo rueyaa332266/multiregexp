@@ -1,7 +1,6 @@
 # multiregexp
 
-`multiregexp` is a package for Go that provides the match method for
-a list of `regexp`.
+Package multiregexp helps to make a set of regular expression. And multiregexp applies functions to logical join the match result in set.
 
 ## Installation
 ```
@@ -15,7 +14,7 @@ import (
 
 ## Usage
 
-### Make multiregexp and match
+### Make a set of regexp and match the string
 
 ```go
 package main
