@@ -83,7 +83,7 @@ func (res *Regexps) MatchReader(r io.RuneReader, matchEvery bool) bool {
 	}
 }
 
-unc (res *Regexps) MatchReaderWhich(r io.RuneReader) []int {
+func (res *Regexps) MatchReaderWhich(r io.RuneReader) []int {
 	var match []int
 	for i, re := range res.Regexp {
 		if re.MatchReader(r) {

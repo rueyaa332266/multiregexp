@@ -35,11 +35,11 @@ func main() {
     regs = multiregexp.Append(regs, re1, re2)
 
     // Use true to match every regexp
-    result := regs.MatchString("foo", true)
-    fmt.Println(result)
+    result1 := regs.MatchString("foo", true)
+    fmt.Println(result1)
 
     // Use false to check if one of the regexp match
-    result := regs.MatchString("foo", false)
-    fmt.Println(result)
+    result2 := regs.MatchString("foo", false)
+    fmt.Println(result2)
 }
 ```
