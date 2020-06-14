@@ -27,6 +27,16 @@ func (res *Regexps) Match(b []byte, matchEvery bool) bool {
 	}
 }
 
+func (res *Regexps) MatchWhich(b []byte) []int {
+	var match []int
+	for i, re := range res.Regexp {
+		if re.Match(b) {
+			match = append(match, i)
+		}
+	}
+	return match
+}
+
 func (res *Regexps) MatchString(s string, matchEvery bool) bool {
 	if matchEvery {
 		for _, re := range res.Regexp {
@@ -45,6 +55,16 @@ func (res *Regexps) MatchString(s string, matchEvery bool) bool {
 	}
 }
 
+func (res *Regexps) MatchStringWhich(s string) []int {
+	var match []int
+	for i, re := range res.Regexp {
+		if re.MatchString(s) {
+			match = append(match, i)
+		}
+	}
+	return match
+}
+
 func (res *Regexps) MatchReader(r io.RuneReader, matchEvery bool) bool {
 	if matchEvery {
 		for _, re := range res.Regexp {
@@ -61,6 +81,16 @@ func (res *Regexps) MatchReader(r io.RuneReader, matchEvery bool) bool {
 		}
 		return false
 	}
+}
+
+unc (res *Regexps) MatchReaderWhich(r io.RuneReader) []int {
+	var match []int
+	for i, re := range res.Regexp {
+		if re.MatchReader(r) {
+			match = append(match, i)
+		}
+	}
+	return match
 }
 
 func Append(res Regexps, regs ...*regexp.Regexp) Regexps {

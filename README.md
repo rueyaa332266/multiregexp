@@ -15,7 +15,7 @@ import (
 
 ## Usage
 
-### Build and match
+### Make multiregexp and match
 
 ```go
 package main
@@ -29,17 +29,16 @@ func main() {
 	re1 := regexp.MustCompile(`\d`)
 	re2 := regexp.MustCompile(`[a-z]`)
 
-    # Build a list of regexp
+    // Make an empty Regexps
     var regs multiregexp.Regexps
+    // Append the regexp in Regexps
     regs = multiregexp.Append(regs, re1, re2)
 
-    # Match the regexp
-
-    # Return true when every regexp matched
+    // Use true to match every regexp
     result := regs.MatchString("foo", true)
     fmt.Println(result)
 
-    # Return true if one regexp in the list matched
+    // Use false to check if one of the regexp match
     result := regs.MatchString("foo", false)
     fmt.Println(result)
 }
