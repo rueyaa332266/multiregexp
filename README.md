@@ -1,11 +1,14 @@
 # multiregexp
 
-Package multiregexp helps to make a set of regular expression. And multiregexp applies functions to logical join the match result in set.
+Package multiregexp helps to make a set of regular expression. And it applies functions to logical join the match result in the set.
 
 ## Installation
+Get the package.
 ```
 go get github.com/rueyaa332266/multiregexp
 ```
+
+Import in the code.
 ```
 import (
   "github.com/rueyaa332266/multiregexp"
@@ -25,11 +28,12 @@ import (
 )
 
 func main() {
-	re1 := regexp.MustCompile(`\d`)
-	re2 := regexp.MustCompile(`[a-z]`)
-
     // Make an empty Regexps
     var regs multiregexp.Regexps
+    
+    re1 := regexp.MustCompile(`\d`)
+    re2 := regexp.MustCompile(`[a-z]`)
+
     // Append the regexp in Regexps
     regs = multiregexp.Append(regs, re1, re2)
 
