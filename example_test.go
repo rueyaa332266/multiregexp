@@ -85,5 +85,5 @@ func ExampleAppend() {
 	regs = Append(regs, re1, re2)
 
 	fmt.Println(regs)
-	// Output: {[\d [a-z]]}
+	// Output: [\d [a-z]]
 }

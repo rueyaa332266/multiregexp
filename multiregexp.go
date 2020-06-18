@@ -6,23 +6,21 @@ import (
 )
 
 // Regexps is a set of regular expression.
-type Regexps struct {
-	Regexp []*regexp.Regexp
-}
+type Regexps []*regexp.Regexp
 
 // Match reports whether the byte slice b contains any match in the set of the regular expression res.
 // When matchEvery is true, the result of each match will be logically joined with AND.
 // Otherwise the result of each match will be joined with OR.
-func (res *Regexps) Match(b []byte, matchEvery bool) bool {
+func (res Regexps) Match(b []byte, matchEvery bool) bool {
 	if matchEvery {
-		for _, re := range res.Regexp {
+		for _, re := range res {
 			if !re.Match(b) {
 				return false
 			}
 		}
 		return true
 	} else {
-		for _, re := range res.Regexp {
+		for _, re := range res {
 			if re.Match(b) {
 				return true
 			}
@@ -33,9 +31,9 @@ func (res *Regexps) Match(b []byte, matchEvery bool) bool {
 
 // MatchWhich reports the index of matched regular expression in the set.
 // It returns an empty slice when no regular expression is matched.
-func (res *Regexps) MatchWhich(b []byte) []int {
+func (res Regexps) MatchWhich(b []byte) []int {
 	var match []int
-	for i, re := range res.Regexp {
+	for i, re := range res {
 		if re.Match(b) {
 			match = append(match, i)
 		}
@@ -46,16 +44,16 @@ func (res *Regexps) MatchWhich(b []byte) []int {
 // MatchString reports whether the string s contains any match in the set of the regular expression res.
 // When matchEvery is true, the result of each match will be logically joined with AND.
 // Otherwise the result of each match will be joined with OR.
-func (res *Regexps) MatchString(s string, matchEvery bool) bool {
+func (res Regexps) MatchString(s string, matchEvery bool) bool {
 	if matchEvery {
-		for _, re := range res.Regexp {
+		for _, re := range res {
 			if !re.MatchString(s) {
 				return false
 			}
 		}
 		return true
 	} else {
-		for _, re := range res.Regexp {
+		for _, re := range res {
 			if re.MatchString(s) {
 				return true
 			}
@@ -66,9 +64,9 @@ func (res *Regexps) MatchString(s string, matchEvery bool) bool {
 
 // MatchStringWhich reports the index of matched regular expression in the set.
 // It returns an empty slice when no regular expression is matched.
-func (res *Regexps) MatchStringWhich(s string) []int {
+func (res Regexps) MatchStringWhich(s string) []int {
 	var match []int
-	for i, re := range res.Regexp {
+	for i, re := range res {
 		if re.MatchString(s) {
 			match = append(match, i)
 		}
@@ -79,7 +77,7 @@ func (res *Regexps) MatchStringWhich(s string) []int {
 // Append adds regular expression into the set of the regular expression res.
 func Append(res Regexps, regs ...*regexp.Regexp) Regexps {
 	for _, re := range regs {
-		res.Regexp = append(res.Regexp, re)
+		res = append(res, re)
 	}
 	return res
 }

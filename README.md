@@ -30,7 +30,7 @@ import (
 func main() {
     // Make an empty Regexps
     var regs multiregexp.Regexps
-    
+
     re1 := regexp.MustCompile(`\d`)
     re2 := regexp.MustCompile(`[a-z]`)
 
