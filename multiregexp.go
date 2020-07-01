@@ -19,14 +19,13 @@ func (res Regexps) Match(b []byte, matchEvery bool) bool {
 			}
 		}
 		return true
-	} else {
-		for _, re := range res {
-			if re.Match(b) {
-				return true
-			}
-		}
-		return false
 	}
+	for _, re := range res {
+		if re.Match(b) {
+			return true
+		}
+	}
+	return false
 }
 
 // MatchWhich reports the index of matched regular expression in the set.
@@ -52,14 +51,13 @@ func (res Regexps) MatchString(s string, matchEvery bool) bool {
 			}
 		}
 		return true
-	} else {
-		for _, re := range res {
-			if re.MatchString(s) {
-				return true
-			}
-		}
-		return false
 	}
+	for _, re := range res {
+		if re.MatchString(s) {
+			return true
+		}
+	}
+	return false
 }
 
 // MatchStringWhich reports the index of matched regular expression in the set.
