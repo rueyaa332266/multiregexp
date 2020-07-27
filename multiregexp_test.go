@@ -3,7 +3,24 @@ package multiregexp
 import (
 	"fmt"
 	"regexp"
+	"testing"
 )
+
+func TestMatch_withAndLogic(t *testing.T) {
+	regs := Regexps{regexp.MustCompile(`[A-z]`), regexp.MustCompile(`[a-z]`)}
+	got := regs.Match([]byte("Foo"), "AND")
+	if got != true {
+		t.Errorf("Error in Match AND")
+	}
+}
+
+func TestMatch_withOrLogic(t *testing.T) {
+	regs := Regexps{regexp.MustCompile(`[A-z]`), regexp.MustCompile(`[a-z]`)}
+	got := regs.Match([]byte("123"))
+	if got != false {
+		t.Errorf("Error in Match OR")
+	}
+}
 
 func ExampleRegexps_Match_withAndLogic() {
 	var regs Regexps
@@ -39,6 +56,22 @@ func ExampleRegexps_MatchWhich() {
 
 	fmt.Println(result)
 	// Output: [1]
+}
+
+func TestMatchString_withAndLogic(t *testing.T) {
+	regs := Regexps{regexp.MustCompile(`[A-z]`), regexp.MustCompile(`[a-z]`)}
+	got := regs.MatchString("Foo", "AND")
+	if got != true {
+		t.Errorf("Error in MatchString AND")
+	}
+}
+
+func TestMatchString_withOrLogic(t *testing.T) {
+	regs := Regexps{regexp.MustCompile(`[A-z]`), regexp.MustCompile(`[a-z]`)}
+	got := regs.MatchString("123")
+	if got != false {
+		t.Errorf("Error in MatchString OR")
+	}
 }
 
 func ExampleRegexps_MatchString_withAndLogic() {
