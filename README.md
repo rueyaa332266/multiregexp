@@ -1,27 +1,27 @@
-# multiregexp	
+# multiregexp
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/rueyaa332266/multiregexp)](https://goreportcard.com/report/github.com/rueyaa332266/multiregexp)	
-[![GoDoc](https://godoc.org/github.com/rueyaa332266/multiregexp?status.svg)](https://godoc.org/github.com/rueyaa332266/multiregexp)	
-![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)	
+[![Go Report Card](https://goreportcard.com/badge/github.com/rueyaa332266/multiregexp)](https://goreportcard.com/report/github.com/rueyaa332266/multiregexp)
+[![GoDoc](https://godoc.org/github.com/rueyaa332266/multiregexp?status.svg)](https://godoc.org/github.com/rueyaa332266/multiregexp)
+![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)
 
-Package multiregexp helps to make a set of regular expression. And it applies functions to logical join the match result in the set.	
+Package multiregexp helps to make a set of regular expression. And it applies functions to logical join the match result in the set.
 
-## Installation	
-Get the package.	
-```	
-go get github.com/rueyaa332266/multiregexp	
-```	
+## Installation
+Get the package.
+```
+go get github.com/rueyaa332266/multiregexp
+```
 
-Import in the code.	
-```	
-import (	
-  "github.com/rueyaa332266/multiregexp"	
-)	
-```	
+Import in the code.
+```
+import (
+  "github.com/rueyaa332266/multiregexp"
+)
+```
 
-## Usage	
+## Usage
 
-### Make a set of regexp and match the string	
+### Make a set of regexp and match the string
 
 ```go
 package main
